@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Weather</string>
+    <string name="chooseCity">Choose your city</string>
+    <string name="weatherInformation">Weather information</string>
+    <string name="selectedPosition">selected_position</string>
+    <string name="send_info">send info</string>
+    <string name="store_info">add information to history</string>
+    <string name="information_history">Usage history</string>
+    <string name="weather_info">Weather information</string>
+    <string name="cancel">cancel</string>
+    <string name="absent_software">Did not find necesary software</string>
+    <string name="error">Wrong request</string>
+    <string name="get_info">get information</string>
+    <string name="clear_history">clear history</string>
+</resources>

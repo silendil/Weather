@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Погода</string>
+    <string name="chooseCity">Выбери свой город</string>
+    <string name="weatherInformation">Информация о погоде</string>
+    <string name="send_info">Отправить информацию</string>
+    <string name="store_info">Добавить информацию в историю</string>
+    <string name="information_history">История просмотров</string>
+    <string name="weather_info">Информация о погоде</string>
+    <string name="cancel">отменя</string>
+    <string name="absent_software">Не найдено необходимое программное обеспечение</string>
+    <string name="error">Неправильный запрос</string>
+    <string name="get_info">Получить информацию</string>
+    <string name="clear_history">Очистить историю</string>
+</resources>

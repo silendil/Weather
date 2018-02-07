@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="citisDictionary">
+        <item>Winterfell:Winter is coming</item>
+        <item>Sun Spire:Winter is in the North</item>
+        <item>Pike:Weather is bad again</item>
+        <item>Wall:Winter is here</item>
+    </string-array>
+</resources>

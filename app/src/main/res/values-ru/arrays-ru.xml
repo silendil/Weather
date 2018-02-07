@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="citisDictionary">
+        <item>Винтерфэл:Зима близко</item>
+        <item>Солнечное Копье:Зима на севере</item>
+        <item>Пайк:Погода снова плохая</item>
+        <item>Стена:Зима уже здесь!!!</item>
+    </string-array>
+</resources>
