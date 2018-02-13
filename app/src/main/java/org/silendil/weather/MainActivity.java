@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -18,8 +19,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public final static String CITY = "CITY";
     private static int REQUEST_CODE = 0;
-    private static String SHARED_NAME = "LOCAL_FILE";
-    private static String STORED_INFO = "STORED_INFO";
+    private final static String SHARED_NAME = "LOCAL_FILE";
+    private final static String STORED_INFO = "STORED_INFO";
+    public final static String LOG_TAG = "WEATHER_APP";
 
     private TextView citiesInfo;
     private Spinner cities;
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d(LOG_TAG, "onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         cities = (Spinner) findViewById(R.id.cities);
@@ -41,6 +44,42 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         SharedPreferences sf = getSharedPreferences(SHARED_NAME,MODE_PRIVATE);
         citiesInfo.setText(sf.getString(STORED_INFO,""));
         cities.setSelection(sf.getInt(getString(R.string.selectedPosition),0));
+    }
+
+    @Override
+    protected void onStart() {
+        Log.d(LOG_TAG, "onStart");
+        super.onStart();
+    }
+
+    @Override
+    protected void onResume() {
+        Log.d(LOG_TAG, "onResume");
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        Log.d(LOG_TAG, "onPause");
+        super.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        Log.d(LOG_TAG, "onStop");
+        super.onStop();
+    }
+
+    @Override
+    protected void onRestart() {
+        Log.d(LOG_TAG, "onRestart");
+        super.onRestart();
+    }
+
+    @Override
+    protected void onDestroy() {
+        Log.d(LOG_TAG, "onDestroy");
+        super.onDestroy();
     }
 
     @Override

@@ -11,4 +11,5 @@
     <string name="error">Неправильный запрос</string>
     <string name="get_info">Получить информацию</string>
     <string name="clear_history">Очистить историю</string>
+    <string name="extra_message">Ведите сообщение</string>
 </resources>

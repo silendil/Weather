@@ -6,9 +6,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+
+import static org.silendil.weather.MainActivity.LOG_TAG;
 
 import static org.silendil.weather.MainActivity.CITY;
 
@@ -19,18 +23,63 @@ import static org.silendil.weather.MainActivity.CITY;
 public class ViewActivity extends AppCompatActivity implements View.OnClickListener{
 
     public final static String CITY_INFO = "CITY_INFO";
+    public final static String EXTRA_MESSAGE = "EXTRA_MESSAGE_VALUE";
 
     private TextView weatherInfo;
+    private EditText messageText;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        Log.d(LOG_TAG, "onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_layout);
+        initComponents();
+        if(savedInstanceState != null)
+            messageText.setText(savedInstanceState.getString(EXTRA_MESSAGE));
+    }
+
+    @Override
+    protected void onStart() {
+        Log.d(LOG_TAG, "onStart");
+        super.onStart();
+    }
+
+    @Override
+    protected void onResume() {
+        Log.d(LOG_TAG, "onResume");
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        Log.d(LOG_TAG, "onPause");
+        super.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        Log.d(LOG_TAG, "onStop");
+        super.onStop();
+    }
+
+    @Override
+    protected void onRestart() {
+        Log.d(LOG_TAG, "onRestart");
+        super.onRestart();
+    }
+
+    @Override
+    protected void onDestroy() {
+        Log.d(LOG_TAG, "onDestroy");
+        super.onDestroy();
+    }
+
+    private void initComponents(){
         Intent request = getIntent();
         String city = request.getStringExtra(CITY);
         weatherInfo = (TextView) findViewById(R.id.weather_info);
         WeatherProvider provider = new WeatherProvider(getResources().getStringArray(R.array.citisDictionary));
-        String result = city + " : " + provider.getInfo(city);
+        String result = String.format("%s : %s",city, provider.getInfo(city)) ;
         weatherInfo.setText(result);
         Button store = (Button) findViewById(R.id.store_button);
         store.setOnClickListener(this);
@@ -38,6 +87,14 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         send.setOnClickListener(this);
         Button cancel = (Button) findViewById(R.id.cancel_button);
         cancel.setOnClickListener(this);
+        messageText = (EditText) findViewById(R.id.message_text);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        Log.d(LOG_TAG, "onSaveInstanceState");
+        super.onSaveInstanceState(outState);
+        outState.putString(EXTRA_MESSAGE, messageText.getText().toString());
     }
 
     @Override
@@ -55,7 +112,8 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         if(v.getId() == R.id.send_button){
             Intent send = new Intent(Intent.ACTION_SEND);
             send.setType("text/plain");
-            send.putExtra(CITY_INFO,weatherInfo.getText().toString());
+            String message = String.format("%s - (%s)",messageText.getText().toString(), weatherInfo.getText().toString());
+            send.putExtra(Intent.EXTRA_TEXT, message);
             try {
                 startActivity(send);
             }catch (ActivityNotFoundException ex){

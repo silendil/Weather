@@ -12,4 +12,5 @@
     <string name="error">Wrong request</string>
     <string name="get_info">get information</string>
     <string name="clear_history">clear history</string>
+    <string name="extra_message">Input extra message</string>
 </resources>

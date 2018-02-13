@@ -17,6 +17,16 @@
         android:textSize="@dimen/fontSize"
         android:textColor="@color/colorPrimaryDark"/>
 
+    <EditText
+        android:id="@+id/message_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/marginTop"
+        android:layout_marginLeft="@dimen/marginSide"
+        android:layout_marginRight="@dimen/marginSide"
+        android:textSize="@dimen/fontSize"
+        android:tooltipText="@string/extra_message"/>
+
     <Button
         android:id="@+id/send_button"
         android:layout_width="wrap_content"
