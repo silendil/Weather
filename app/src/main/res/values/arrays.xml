@@ -6,4 +6,14 @@
         <item>Pike:Weather is bad again</item>
         <item>Wall:Winter is here</item>
     </string-array>
+    <string-array name="colors">
+        <item>red:#ff0000</item>
+        <item>green:#00ff00</item>
+        <item>blue:#0000ff</item>
+        <item>yellow:#ffff00</item>
+        <item>cyan:#00ffff</item>
+        <item>magenta:#ff00ff</item>
+        <item>black:#000000</item>
+        <item>white:#ffffff</item>
+    </string-array>
 </resources>

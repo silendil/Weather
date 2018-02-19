@@ -9,17 +9,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"
-            android:screenOrientation="portrait">
+        <activity android:name=".activities.MainActivity"
+            android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ViewActivity"
+        <activity android:name=".activities.ViewActivity"
             android:label="@string/weather_info"
-            android:screenOrientation="portrait"/>
+            android:configChanges="orientation|screenSize"/>
+        <activity android:name=".activities.SettingsActivity"
+            android:label="@string/settings"
+            android:configChanges="orientation|screenSize"/>
     </application>
 
 </manifest>

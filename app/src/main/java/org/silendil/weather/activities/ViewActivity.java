@@ -1,4 +1,4 @@
-package org.silendil.weather;
+package org.silendil.weather.activities;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
@@ -12,9 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import static org.silendil.weather.MainActivity.LOG_TAG;
-
-import static org.silendil.weather.MainActivity.CITY;
+import org.silendil.weather.R;
+import org.silendil.weather.providers.WeatherProvider;
 
 /**
  * Created by phryts on 2/6/2018.
@@ -30,7 +29,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        Log.d(LOG_TAG, "onCreate");
+        Log.d(MainActivity.LOG_TAG, "onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_layout);
         initComponents();
@@ -40,43 +39,43 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     protected void onStart() {
-        Log.d(LOG_TAG, "onStart");
+        Log.d(MainActivity.LOG_TAG, "onStart");
         super.onStart();
     }
 
     @Override
     protected void onResume() {
-        Log.d(LOG_TAG, "onResume");
+        Log.d(MainActivity.LOG_TAG, "onResume");
         super.onResume();
     }
 
     @Override
     protected void onPause() {
-        Log.d(LOG_TAG, "onPause");
+        Log.d(MainActivity.LOG_TAG, "onPause");
         super.onPause();
     }
 
     @Override
     protected void onStop() {
-        Log.d(LOG_TAG, "onStop");
+        Log.d(MainActivity.LOG_TAG, "onStop");
         super.onStop();
     }
 
     @Override
     protected void onRestart() {
-        Log.d(LOG_TAG, "onRestart");
+        Log.d(MainActivity.LOG_TAG, "onRestart");
         super.onRestart();
     }
 
     @Override
     protected void onDestroy() {
-        Log.d(LOG_TAG, "onDestroy");
+        Log.d(MainActivity.LOG_TAG, "onDestroy");
         super.onDestroy();
     }
 
     private void initComponents(){
         Intent request = getIntent();
-        String city = request.getStringExtra(CITY);
+        String city = request.getStringExtra(MainActivity.CITY);
         weatherInfo = (TextView) findViewById(R.id.weather_info);
         WeatherProvider provider = new WeatherProvider(getResources().getStringArray(R.array.citisDictionary));
         String result = String.format("%s : %s",city, provider.getInfo(city)) ;
@@ -92,7 +91,7 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        Log.d(LOG_TAG, "onSaveInstanceState");
+        Log.d(MainActivity.LOG_TAG, "onSaveInstanceState");
         super.onSaveInstanceState(outState);
         outState.putString(EXTRA_MESSAGE, messageText.getText().toString());
     }

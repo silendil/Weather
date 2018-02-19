@@ -25,7 +25,7 @@
         android:layout_marginLeft="@dimen/marginSide"
         android:layout_marginRight="@dimen/marginSide"
         android:textSize="@dimen/fontSize"
-        android:tooltipText="@string/extra_message"/>
+        android:hint="@string/extra_message"/>
 
     <Button
         android:id="@+id/send_button"

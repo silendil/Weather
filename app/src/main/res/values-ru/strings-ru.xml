@@ -12,4 +12,11 @@
     <string name="get_info">Получить информацию</string>
     <string name="clear_history">Очистить историю</string>
     <string name="extra_message">Ведите сообщение</string>
+    <string name="settings">Настройки</string>
+    <string name="back_color">Цвет фона</string>
+    <string name="default_value">Текущее значение</string>
+    <string name="choose_back_color">Выберите цвет:</string>
+    <string name="caption_color">Цвет заголовков</string>
+    <string name="history_color">Цвет истории сообщений</string>
+    <string name="confirm">Подтвердить</string>
 </resources>

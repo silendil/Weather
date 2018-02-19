@@ -13,4 +13,11 @@
     <string name="get_info">get information</string>
     <string name="clear_history">clear history</string>
     <string name="extra_message">Input extra message</string>
+    <string name="settings">Settings</string>
+    <string name="back_color">Background color</string>
+    <string name="default_value">Current value</string>
+    <string name="choose_back_color">Choose color:</string>
+    <string name="caption_color">Caption color</string>
+    <string name="history_color">History color</string>
+    <string name="confirm">Confirm</string>
 </resources>

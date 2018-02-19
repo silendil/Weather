@@ -3,4 +3,6 @@
     <dimen name="marginTop">15dp</dimen>
     <dimen name="marginSide">10dp</dimen>
     <dimen name="fontSize">20sp</dimen>
+    <dimen name="fontCaptionSize">30sp</dimen>
+    <dimen name="buttonSize">50dp</dimen>
 </resources>
