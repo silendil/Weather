@@ -10,8 +10,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.silendil.weather.City;
 import org.silendil.weather.R;
 import org.silendil.weather.providers.WeatherProvider;
 
@@ -75,10 +77,12 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
 
     private void initComponents(){
         Intent request = getIntent();
-        String city = request.getStringExtra(MainActivity.CITY);
+        City[] cityArray = City.createCityArray(getResources().getStringArray(R.array.citisDictionary));
+        ImageView icon = (ImageView)findViewById(R.id.city_icon);
+        int position = request.getIntExtra(MainActivity.CITY_INDEX,0);
+        icon.setImageResource(cityArray[position].getImageId());
         weatherInfo = (TextView) findViewById(R.id.weather_info);
-        WeatherProvider provider = new WeatherProvider(getResources().getStringArray(R.array.citisDictionary));
-        String result = String.format("%s : %s",city, provider.getInfo(city)) ;
+        String result = String.format("%s : %s",cityArray[position].getCityName(), cityArray[position].getWeatherInformation()) ;
         weatherInfo.setText(result);
         Button store = (Button) findViewById(R.id.store_button);
         store.setOnClickListener(this);
@@ -111,7 +115,11 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         if(v.getId() == R.id.send_button){
             Intent send = new Intent(Intent.ACTION_SEND);
             send.setType("text/plain");
-            String message = String.format("%s - (%s)",messageText.getText().toString(), weatherInfo.getText().toString());
+            String message;
+            if (messageText.getText().toString().isEmpty())
+                message = weatherInfo.getText().toString();
+            else
+                message = String.format("%s - (%s)",messageText.getText().toString(), weatherInfo.getText().toString());
             send.putExtra(Intent.EXTRA_TEXT, message);
             try {
                 startActivity(send);

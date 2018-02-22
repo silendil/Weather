@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="citisDictionary">
-        <item>Winterfell:Winter is coming</item>
-        <item>Sun Spire:Winter is in the North</item>
-        <item>Pike:Weather is bad again</item>
-        <item>Wall:Winter is here</item>
+        <item>Winterfell:Winter is coming:R.drawable.winterfell</item>
+        <item>Sun Spire:Winter is in the North:R.drawable.sunspear</item>
+        <item>Pike:Weather is bad again:R.drawable.pike</item>
+        <item>Wall:Winter is here:R.drawable.wall</item>
     </string-array>
     <string-array name="colors">
         <item>red:#ff0000</item>

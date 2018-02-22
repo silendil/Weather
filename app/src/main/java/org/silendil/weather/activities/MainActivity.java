@@ -6,13 +6,19 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import org.silendil.weather.City;
 import org.silendil.weather.R;
 import org.silendil.weather.providers.ColorProvider;
 import org.silendil.weather.providers.WeatherProvider;
@@ -30,14 +36,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public final static String BACKGROUND = "BACKGROUND_COLOR";
     public final static String CAPTION = "CAPTION_COLOR";
     public final static String HISTORY = "HISTORY_COLOR";
+    public final static String CITY_INDEX = "CITY_INDEX";
+    private final static int VERTICAL = 1;
 
     private TextView citiesInfo;
-    private Spinner cities;
     private ColorProvider colorProvider;
+
 
     private String backgroundColor = "#ffffff";
     private String captionColor = "#0000ff";
     private String historyColor = "#ff00ff";
+
+    private City[] cityArray;
 
 
     @Override
@@ -50,18 +60,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void init(){
         colorProvider = new ColorProvider(getResources().getStringArray(R.array.colors));
-        cities = (Spinner) findViewById(R.id.cities);
+        RecyclerView list = (RecyclerView)findViewById(R.id.list_view);
+        LinearLayoutManager linear = new LinearLayoutManager(this);
+        linear.setOrientation(VERTICAL);
+        list.setLayoutManager(linear);
+        list.setAdapter(new CityAdapter());
         citiesInfo = (TextView) findViewById(R.id.information_history);
         final WeatherProvider weatherProvider = new WeatherProvider(getResources().getStringArray(R.array.citisDictionary));
-        cities.setAdapter(new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item,weatherProvider.getCitiesArray()));
-        cities.setSelection(getPreferences(Context.MODE_PRIVATE).getInt(getString(R.string.selectedPosition),0),false);
-        Button getInfo = (Button)findViewById(R.id.get_info_button);
-        getInfo.setOnClickListener(this);
+        cityArray = City.createCityArray(getResources().getStringArray(R.array.citisDictionary));
         Button clearInfo = (Button)findViewById(R.id.clear_history_button);
         clearInfo.setOnClickListener(this);
         SharedPreferences sf = getSharedPreferences(SHARED_NAME,MODE_PRIVATE);
         citiesInfo.setText(sf.getString(STORED_INFO,""));
-        cities.setSelection(sf.getInt(getString(R.string.selectedPosition),0));
         backgroundColor = sf.getString(BACKGROUND,"#ffffff");
         captionColor = sf.getString(CAPTION,"#0000ff");
         historyColor = sf.getString(HISTORY, "#ff00ff");
@@ -150,13 +160,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch(v.getId()){
-            case R.id.get_info_button:
-                String city = ((TextView)cities.getSelectedView()).getText().toString();
-                Intent requestIntent = new Intent(this, ViewActivity.class);
-                requestIntent.putExtra(CITY, city);
-                getSharedPreferences(SHARED_NAME,MODE_PRIVATE).edit().putInt(getString(R.string.selectedPosition),cities.getSelectedItemPosition()).apply();
-                startActivityForResult(requestIntent,REQUEST_CODE);
-                break;
             case R.id.clear_history_button:
                 getSharedPreferences(SHARED_NAME,MODE_PRIVATE).edit().putString(STORED_INFO,"").apply();
                 citiesInfo.setText("");
@@ -168,6 +171,52 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 settingsIntent.putExtra(HISTORY, colorProvider.getKey(historyColor));
                 startActivityForResult(settingsIntent,SETTINGS_CODE);
                 break;
+        }
+    }
+
+    private void getInfo(int position){
+        Intent infoGet = new Intent(MainActivity.this,ViewActivity.class);
+        infoGet.putExtra(CITY_INDEX, position);
+        startActivityForResult(infoGet,REQUEST_CODE);
+    }
+
+    private class CityAdapter extends RecyclerView.Adapter<CityViewHolder>{
+        @Override
+        public CityViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            return new CityViewHolder(LayoutInflater.from(getApplicationContext()),parent);
+        }
+
+        @Override
+        public void onBindViewHolder(CityViewHolder holder, int position) {
+            holder.bind(position);
+        }
+
+        @Override
+        public int getItemCount() {
+            return cityArray.length;
+        }
+    }
+
+    private class CityViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+
+        private ImageView icon;
+        private TextView text;
+
+        public CityViewHolder(LayoutInflater inflater, ViewGroup parent) {
+            super(inflater.inflate(R.layout.list_item,parent,false));
+            itemView.setOnClickListener(this);
+            icon = (ImageView)itemView.findViewById(R.id.icon_item);
+            text = (TextView)itemView.findViewById(R.id.text_item);
+        }
+
+        public void bind(int position){
+            text.setText(cityArray[position].getCityName());
+            icon.setImageResource(cityArray[position].getImageId());
+        }
+
+        @Override
+        public void onClick(View view) {
+            getInfo(getLayoutPosition());
         }
     }
 }

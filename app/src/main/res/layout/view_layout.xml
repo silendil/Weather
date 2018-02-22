@@ -1,51 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/weather_info"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/weatherInformation"
-        android:gravity="center_horizontal"
-        android:layout_marginTop="@dimen/marginTop"
-        android:layout_marginLeft="@dimen/marginSide"
-        android:layout_marginRight="@dimen/marginSide"
-        android:textSize="@dimen/fontSize"
-        android:textColor="@color/colorPrimaryDark"/>
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/message_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/marginTop"
-        android:layout_marginLeft="@dimen/marginSide"
-        android:layout_marginRight="@dimen/marginSide"
-        android:textSize="@dimen/fontSize"
-        android:hint="@string/extra_message"/>
+        <ImageView
+            android:id="@+id/city_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/marginTop"
+            tools:src="@drawable/wall"/>
 
-    <Button
-        android:id="@+id/send_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/send_info"
-        android:layout_gravity="center_horizontal"/>
+        <TextView
+            android:id="@+id/weather_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/marginSide"
+            android:layout_marginRight="@dimen/marginSide"
+            android:layout_marginTop="@dimen/marginTop"
+            android:gravity="center_horizontal"
+            android:text="@string/weatherInformation"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/fontSize" />
 
-    <Button
-        android:id="@+id/store_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/store_info"
-        android:layout_gravity="center_horizontal"/>
+        <EditText
+            android:id="@+id/message_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/marginSide"
+            android:layout_marginRight="@dimen/marginSide"
+            android:layout_marginTop="@dimen/marginTop"
+            android:hint="@string/extra_message"
+            android:textSize="@dimen/fontSize" />
 
-    <Button
-        android:id="@+id/cancel_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/cancel"
-        android:layout_gravity="center_horizontal"/>
+        <Button
+            android:id="@+id/send_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/send_info" />
 
-</LinearLayout>
+        <Button
+            android:id="@+id/store_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/store_info" />
+
+        <Button
+            android:id="@+id/cancel_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/cancel" />
+
+    </LinearLayout>
+</ScrollView>

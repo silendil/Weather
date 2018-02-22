@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="citisDictionary">
-        <item>Винтерфэл:Зима близко</item>
-        <item>Солнечное Копье:Зима на севере</item>
-        <item>Пайк:Погода снова плохая</item>
-        <item>Стена:Зима уже здесь!!!</item>
+        <item>Винтерфэл:Зима близко:R.drawable.winterfell</item>
+        <item>Солнечное Копье:Зима на севере:R.drawable.sunspear</item>
+        <item>Пайк:Погода снова плохая:R.drawable.pike</item>
+        <item>Стена:Зима уже здесь!!!:R.drawable.wall</item>
     </string-array>
     <string-array name="colors">
         <item>красный:#ff0000</item>
