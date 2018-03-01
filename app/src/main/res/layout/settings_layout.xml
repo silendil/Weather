@@ -1,137 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/settings_main"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <TextView
-        android:id="@+id/settings_capture"
+    android:layout_height="match_parent">
+    <LinearLayout android:id="@+id/settings_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="@string/settings"
-        android:textSize="@dimen/fontCaptionSize" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="@dimen/marginTop">
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/back_color_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/back_color"
-            android:textSize="@dimen/fontSize" />
-
-        <CheckBox
-            android:id="@+id/back_color_choose"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="@string/default_value"
-            android:onClick="onChecked"/>
-
-        <LinearLayout
-            android:id="@+id/settings_background_layout"
+            android:id="@+id/settings_capture"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:visibility="gone">
+            android:gravity="center_horizontal"
+            android:text="@string/settings"
+            android:textSize="@dimen/fontCaptionSize" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/marginTop">
 
             <TextView
+                android:id="@+id/back_color_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/choose_back_color"
+                android:text="@string/back_color"
                 android:textSize="@dimen/fontSize" />
 
-            <Spinner
-                android:id="@+id/back_color_chooser"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-    </LinearLayout>
+            <CheckBox
+                android:id="@+id/back_color_choose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/default_value"
+                android:onClick="onChecked"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="@dimen/marginTop">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/caption_color"
-            android:textSize="@dimen/fontSize"/>
-        <CheckBox
-            android:id="@+id/caption_color_choose"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/default_value"
-            android:checked="true"
-            android:onClick="onChecked"/>
+            <LinearLayout
+                android:id="@+id/settings_background_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/choose_back_color"
+                    android:textSize="@dimen/fontSize" />
+
+                <Spinner
+                    android:id="@+id/back_color_chooser"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+
         <LinearLayout
-            android:id="@+id/settings_caption_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:visibility="gone">
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/marginTop">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/choose_back_color"
+                android:text="@string/caption_color"
                 android:textSize="@dimen/fontSize"/>
-
-            <Spinner
-                android:id="@+id/caption_color_chooser"
+            <CheckBox
+                android:id="@+id/caption_color_choose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/default_value"
+                android:checked="true"
+                android:onClick="onChecked"/>
+            <LinearLayout
+                android:id="@+id/settings_caption_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
-    </LinearLayout>
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/choose_back_color"
+                    android:textSize="@dimen/fontSize"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="@dimen/marginTop">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/history_color"
-            android:textSize="@dimen/fontSize"/>
-        <CheckBox
-            android:id="@+id/history_color_choose"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/default_value"
-            android:checked="true"
-            android:onClick="onChecked"/>
+                <Spinner
+                    android:id="@+id/caption_color_chooser"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </LinearLayout>
+
         <LinearLayout
-            android:id="@+id/settings_history_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:visibility="gone">
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/marginTop">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/choose_back_color"
+                android:text="@string/history_color"
                 android:textSize="@dimen/fontSize"/>
-
-            <Spinner
-                android:id="@+id/history_color_chooser"
+            <CheckBox
+                android:id="@+id/history_color_choose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/default_value"
+                android:checked="true"
+                android:onClick="onChecked"/>
+            <LinearLayout
+                android:id="@+id/settings_history_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/choose_back_color"
+                    android:textSize="@dimen/fontSize"/>
+
+                <Spinner
+                    android:id="@+id/history_color_chooser"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
         </LinearLayout>
+
+        <Button
+            android:id="@+id/confirm_settings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/confirm"
+            android:onClick="onConfirmClick"/>
+
     </LinearLayout>
-
-    <Button
-        android:id="@+id/confirm_settings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/confirm"
-        android:onClick="onConfirmClick"/>
-
-</LinearLayout>
+</ScrollView>

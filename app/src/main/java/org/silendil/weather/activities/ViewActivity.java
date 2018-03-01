@@ -1,42 +1,33 @@
 package org.silendil.weather.activities;
 
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import org.silendil.weather.City;
 import org.silendil.weather.R;
-import org.silendil.weather.providers.WeatherProvider;
+import org.silendil.weather.fragments.InfoFragment;
 
 /**
  * Created by phryts on 2/6/2018.
  */
 
-public class ViewActivity extends AppCompatActivity implements View.OnClickListener{
+public class ViewActivity extends AppCompatActivity implements InfoFragment.Feedback{
 
     public final static String CITY_INFO = "CITY_INFO";
-    public final static String EXTRA_MESSAGE = "EXTRA_MESSAGE_VALUE";
-
-    private TextView weatherInfo;
-    private EditText messageText;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         Log.d(MainActivity.LOG_TAG, "onCreate");
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.view_layout);
-        initComponents();
-        if(savedInstanceState != null)
-            messageText.setText(savedInstanceState.getString(EXTRA_MESSAGE));
+        setContentView(R.layout.info);
+        InfoFragment infoFragment = new InfoFragment();
+        infoFragment.showCancelButton(true);
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.info_fragment,infoFragment);
+        transaction.commit();
     }
 
     @Override
@@ -75,59 +66,18 @@ public class ViewActivity extends AppCompatActivity implements View.OnClickListe
         super.onDestroy();
     }
 
-    private void initComponents(){
-        Intent request = getIntent();
-        City[] cityArray = City.createCityArray(getResources().getStringArray(R.array.citisDictionary));
-        ImageView icon = (ImageView)findViewById(R.id.city_icon);
-        int position = request.getIntExtra(MainActivity.CITY_INDEX,0);
-        icon.setImageResource(cityArray[position].getImageId());
-        weatherInfo = (TextView) findViewById(R.id.weather_info);
-        String result = String.format("%s : %s",cityArray[position].getCityName(), cityArray[position].getWeatherInformation()) ;
-        weatherInfo.setText(result);
-        Button store = (Button) findViewById(R.id.store_button);
-        store.setOnClickListener(this);
-        Button send = (Button) findViewById(R.id.send_button);
-        send.setOnClickListener(this);
-        Button cancel = (Button) findViewById(R.id.cancel_button);
-        cancel.setOnClickListener(this);
-        messageText = (EditText) findViewById(R.id.message_text);
+
+    @Override
+    public void saveHistory(String message) {
+        Intent result = new Intent();
+        result.putExtra(CITY_INFO, message);
+        setResult(RESULT_OK,result);
+        finish();
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        Log.d(MainActivity.LOG_TAG, "onSaveInstanceState");
-        super.onSaveInstanceState(outState);
-        outState.putString(EXTRA_MESSAGE, messageText.getText().toString());
-    }
-
-    @Override
-    public void onClick(View v) {
-        if(v.getId() == R.id.store_button){
-            Intent result = new Intent();
-            result.putExtra(CITY_INFO,weatherInfo.getText().toString());
-            setResult(RESULT_OK,result);
-            finish();
-        }
-        if(v.getId() == R.id.cancel_button){
-            setResult(RESULT_CANCELED);
-            finish();
-        }
-        if(v.getId() == R.id.send_button){
-            Intent send = new Intent(Intent.ACTION_SEND);
-            send.setType("text/plain");
-            String message;
-            if (messageText.getText().toString().isEmpty())
-                message = weatherInfo.getText().toString();
-            else
-                message = String.format("%s - (%s)",messageText.getText().toString(), weatherInfo.getText().toString());
-            send.putExtra(Intent.EXTRA_TEXT, message);
-            try {
-                startActivity(send);
-            }catch (ActivityNotFoundException ex){
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage(R.string.absent_software).setTitle(R.string.error);
-                builder.create().show();
-            }
-        }
+    public void cancel() {
+        setResult(RESULT_CANCELED);
+        finish();
     }
 }
