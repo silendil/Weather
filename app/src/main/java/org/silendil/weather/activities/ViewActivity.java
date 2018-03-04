@@ -10,6 +10,8 @@ import android.util.Log;
 import org.silendil.weather.R;
 import org.silendil.weather.fragments.InfoFragment;
 
+import static org.silendil.weather.activities.MainActivity.CITY_INDEX;
+
 /**
  * Created by phryts on 2/6/2018.
  */
@@ -24,6 +26,7 @@ public class ViewActivity extends AppCompatActivity implements InfoFragment.Feed
         super.onCreate(savedInstanceState);
         setContentView(R.layout.info);
         InfoFragment infoFragment = new InfoFragment();
+        infoFragment.setPosition(getIntent().getIntExtra(CITY_INDEX,0));
         infoFragment.showCancelButton(true);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.info_fragment,infoFragment);

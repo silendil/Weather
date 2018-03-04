@@ -19,4 +19,6 @@
     <string name="caption_color">Цвет заголовков</string>
     <string name="history_color">Цвет истории сообщений</string>
     <string name="confirm">Подтвердить</string>
+    <string name="weather_details">Дателизация</string>
+    <string name="show">Показать</string>
 </resources>

@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,10 +27,15 @@ public class InfoFragment extends Fragment implements View.OnClickListener {
 
     private int position;
 
+    private boolean cancelShow;
+
     public final static String EXTRA_MESSAGE = "EXTRA_MESSAGE_VALUE";
+
+    private final static String DETAILS_FRAGMENT_TAG = "1a210f71-5c31-4d00-918a-e2236cba8b33";
 
     private TextView weatherInfo;
     private EditText messageText;
+    private String weatherDetail;
 
     private Feedback feedback;
 
@@ -48,6 +55,14 @@ public class InfoFragment extends Fragment implements View.OnClickListener {
         initComponents(rootView);
         if(savedInstanceState != null)
             messageText.setText(savedInstanceState.getString(EXTRA_MESSAGE));
+        FragmentManager manager = getChildFragmentManager();
+        WeatherDetailsFragment weatherDetailsFragment = (WeatherDetailsFragment)manager.findFragmentByTag(DETAILS_FRAGMENT_TAG);
+        if(weatherDetailsFragment == null){
+            FragmentTransaction transaction = manager.beginTransaction();
+            WeatherDetailsFragment details = new WeatherDetailsFragment();
+            details.setDetailsMessage(weatherDetail);
+            transaction.replace(R.id.info_details_fragment,details).commit();
+        }
         return rootView;
     }
 
@@ -76,7 +91,10 @@ public class InfoFragment extends Fragment implements View.OnClickListener {
         send.setOnClickListener(this);
         Button cancel = (Button) root.findViewById(R.id.cancel_button);
         cancel.setOnClickListener(this);
+        if(!cancelShow)
+            cancel.setVisibility(View.GONE);
         messageText = (EditText) root.findViewById(R.id.message_text);
+        weatherDetail = cityArray[position].getDetails();
     }
 
     @Override
@@ -113,7 +131,6 @@ public class InfoFragment extends Fragment implements View.OnClickListener {
     }
 
     public void showCancelButton(boolean show){
-        if(getView() != null)
-            ((Button)getView().findViewById(R.id.cancel_button)).setVisibility(show?View.VISIBLE:View.GONE);
+        cancelShow = show;
     }
 }

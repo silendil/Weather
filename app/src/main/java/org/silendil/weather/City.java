@@ -11,13 +11,19 @@ public class City {
     private String cityName;
     private String weatherInformation;
     private int imageId;
+    private String details;
 
     private static final String PACKAGE_NAME = "org.silendil.weather";
 
-    public City(String cityName, String weatherInformation, int imageId){
+    public City(String cityName, String weatherInformation, int imageId, String details){
         this.cityName = cityName;
         this.weatherInformation = weatherInformation;
         this.imageId = imageId;
+        this.details = details;
+    }
+
+    public String getDetails() {
+        return details;
     }
 
     public String getCityName() {
@@ -36,7 +42,7 @@ public class City {
         City[] result = new City[array.length];
         for(int i = 0; i < array.length;i++){
             String[] initial = array[i].split(":");
-            result[i] = new City(initial[0], initial[1], getId(initial[2]));
+            result[i] = new City(initial[0], initial[1], getId(initial[2]),initial[3]);
         }
         return result;
     }
